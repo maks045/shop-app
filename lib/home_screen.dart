@@ -1,11 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shop_app/core/theme/app_theme.dart';
 import 'app/cart/presentation/cart_screen.dart';
 import 'app/profile/profile_screen.dart';
 import 'app/search/search_screen.dart';
 import 'app/shop/presentation/shop_screen.dart';
 import 'app/wishlist/wish_list_screen.dart';
+
 final bottomNavIndexProvider = StateProvider<int>((ref) => 0);
 
 class ShopAppScreen extends ConsumerWidget {
@@ -29,17 +30,12 @@ class ShopAppScreen extends ConsumerWidget {
         currentIndex: index,
         onTap: (i) => ref.read(bottomNavIndexProvider.notifier).state = i,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor:Colors.blue,
+        backgroundColor: Colors.white,
+        selectedItemColor: AppTheme.primary,
         unselectedItemColor: Colors.grey,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.store),
-            label: 'Shop',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Shop'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
@@ -48,11 +44,9 @@ class ShopAppScreen extends ConsumerWidget {
             icon: Icon(Icons.favorite),
             label: 'Wishlist',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
-    ));
+      ),
+    );
   }
 }

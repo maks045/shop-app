@@ -1,81 +1,51 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/features/auth/data/auth_services.dart';
+import '../../../../core/theme/app_theme.dart';
+import '../field/password_field.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController controllerEmail = TextEditingController();
-  TextEditingController controllerPassword = TextEditingController();
-  final formkey = GlobalKey<FormState>();
-  String errorMessage = '';
-
-  @override
-  void dispose() {
-    controllerEmail.dispose();
-    controllerPassword.dispose();
-    super.dispose();
-  }
-
-  void signIn() async {
-    try {
-      await authService.value.signIn(
-        email: controllerEmail.text,
-        password: controllerPassword.text,
-      );
-      popPage();
-    } on FirebaseAuthException catch (e) {
-      errorMessage = e.message ?? 'An error occurred';
-    }
-  }
-
-  void popPage() {
-    Navigator.pop(context);
-  }
+class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Login')),
-      body: Form(
-        child: Column(
-          children: [
-            TextFormField(
-              controller: controllerEmail,
-              decoration: InputDecoration(labelText: 'Email'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                }
-                return null;
-              },
-            ),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Hello again,',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w300,color: AppTheme.black)),
+                  const Text('Quinnbriar',style: TextStyle(fontSize: 26,fontWeight: FontWeight.w400,color: AppTheme.black)),
+                ],
+              ),
+              CircleAvatar(child: Image.asset('asset/logo/logo.png',height: 50,width: 50)),
+            ],
+          ),
+          const SizedBox(height: 20),
 
-            TextFormField(
-              controller: controllerPassword,
-              decoration: InputDecoration(labelText: 'Password'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
-                }
-                return null;
-              },
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (formkey.currentState!.validate()) {
-                  signIn();
-                }
-              },
-              child: Text('Login'),
-            ),
-          ],
-        ),
+          Text("This isn't me",style: TextStyle(fontSize: 14,color: AppTheme.surfaceVariant),),
+          const SizedBox(height: 20),
+          // InputField(label: 'Email'),
+          // const SizedBox(height: 20),
+          PasswordField(),
+          const SizedBox(height: 20),
+
+          const SizedBox(height: 20),
+          Text('Forgot Password',style: TextStyle(
+              fontSize: 14,
+              color: AppTheme.surfaceVariant),),
+        ],
       ),
     );
   }

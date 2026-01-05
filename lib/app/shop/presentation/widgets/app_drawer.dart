@@ -9,33 +9,29 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-          backgroundColor: Gradients.blueGradient.colors.first,
-          child: ListView(
-            children: [
-
-              IconButton(onPressed: () => context.pop(), icon: Icon(Icons.close)),
-              ListTile(
-                title: Text('Account'),
-
+      backgroundColor: Colors.black,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: Gradients.blueGradient,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: ListView(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                onPressed: () => context.pop(),
+                icon: Icon(Icons.close),
               ),
-              ListTile(
-                title: Text('Activity'),
-
-              ),
-              ListTile(
-                title: Text('My Orders'),
-
-              ),
-              ListTile(
-                title: Text('Messages'),
-
-              ),
-              ListTile(
-                title: Text('Support'),
-
-              ),
-
-
-            ],
-          )
-      );}}
+            ),
+            ListTile(title: Text('Account')),
+            ListTile(title: Text('Activity')),
+            ListTile(title: Text('My Orders')),
+            ListTile(title: Text('Messages')),
+            ListTile(title: Text('Support')),
+          ],
+        ),
+      ),
+    );
+  }
+}

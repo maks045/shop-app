@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/core/theme/gradient.dart';
-import 'package:shop_app/features/auth/presentation/screen/onboarding/first_onboarding.dart';
-import 'package:shop_app/home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

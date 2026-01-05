@@ -17,21 +17,24 @@ dependencies:
   flutter_svg: ^2.2.3
   http: ^1.6.0
   flutter_riverpod: ^2.5.1
-  flutter_launcher_icons: ^0.14.4
   firebase_core: ^4.2.1
   firebase_auth: ^6.1.2
 #  shared_preferences: ^2.2.2
   cached_network_image: ^3.3.1
+  image_picker: ^1.2.1
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.4
+
 
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: 'asset/logo/logo_n.png'
+  image_path: 'asset/logo/logo.png'
 
 flutter:
   uses-material-design: true

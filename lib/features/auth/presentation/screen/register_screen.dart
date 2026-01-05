@@ -1,7 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/buttons/app_button.dart';
+import '../../../../core/theme/app_theme.dart';
 import '../../data/auth_services.dart';
+import '../field/email_field.dart';
+import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -10,88 +14,84 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  TextEditingController controllerEmail = TextEditingController();
-  TextEditingController controllerPassword = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  String errorMessage = '';
-
-  @override
-  void dispose(){
-    controllerEmail.dispose();
-    controllerPassword.dispose();
-    super.dispose();
-
+class _RegisterScreenState extends State<RegisterScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _controller;
+@override
+ void initState() {
+    super.initState();
+    _controller = TabController(length: 2, vsync: this);
   }
 
 
-  void register()async{
-    try{
-
-    await authService.value.createAccount(
-      email: controllerEmail.text,
-      password: controllerPassword.text,
-
-    );
-    popPage();
-  } on FirebaseAuthException catch(e) {
-      setState(() {
-        errorMessage = e.message ?? 'An error occurred';
-      });
-    }
-    }
-  void popPage(){
-    Navigator.pop(context);
-  }
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
-        appBar: AppBar(
-          title: Text('Register'),
-        ),
-        body: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                controller: controllerEmail,
-                decoration: InputDecoration(
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 30),
+            Image.asset('asset/logo/logo.png'),
+            const SizedBox(height: 30),
+            TabBar(
+              controller: _controller,
+              labelColor: AppTheme.black,
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: Colors.blue,
+              indicatorWeight: 3,
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelStyle: AppTheme.headlineMedium,
+              unselectedLabelStyle: AppTheme.headlineMedium,
+              tabs: const [
+                Tab(text: 'Login'),
+                Tab(text: 'Register'),
+              ],
+            ),
+            const SizedBox(height: 30),
+            Expanded(
+              child: TabBarView(
+                controller: _controller,
+                children: [LoginForm(), SignUpForm()],
+              ),
+            ),
 
-                  labelText: 'Email',
-                ),
-
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: controllerPassword,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  return null;
-                },
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    register();
-                  }
-                },
-                child: Text('Register'),
-              ),
-              Text(errorMessage),
-            ],
-          ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }
+
+
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
+
+  @override
+  State<SignUpForm> createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Manual Sign Up',style: TextStyle(color: AppTheme.black,fontSize: 16),),
+          const SizedBox(height: 20),
+          InputField(),
+          const SizedBox(height: 20),
+          Divider(),
+          const SizedBox(height: 20),
+          const Text('Connect with Social Media',style: TextStyle(color: AppTheme.black,fontSize: 16),),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
