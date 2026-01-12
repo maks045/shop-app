@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/app/shop/domain/model/product_model.dart';
-import 'package:shop_app/app/shop/presentation/screen/product_card.dart';
-import 'package:shop_app/app/shop/presentation/screen/product_card3.dart';
+import 'package:shop_app/app/shop/presentation/card/product_card.dart';
+import 'package:shop_app/app/shop/presentation/card/product_card3.dart';
 
 class SearchResultsList extends StatelessWidget {
   final List<ProductModel> products;

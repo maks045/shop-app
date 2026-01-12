@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shop_app/app/shop/app/product_search_provider.dart';
+import 'package:shop_app/app/search/app/product_search_provider.dart';
 import 'package:shop_app/core/theme/app_theme.dart';
 
 class SearchField extends ConsumerStatefulWidget {
@@ -54,7 +54,6 @@ class _SearchFieldState extends ConsumerState<SearchField> {
             vertical: 14,
           ),
 
-          /// ✅ Appears when focused AND query exists
           suffixIcon: (isFocused && searchState.query.isNotEmpty)
               ? IconButton(
                   icon: const Icon(Icons.close),

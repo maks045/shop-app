@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shop_app/app/shop/presentation/product_detail/product_detail_screen.dart';
 import 'package:shop_app/app/shop/presentation/widgets/stock_badge.dart';
+import 'package:shop_app/core/extensions/router_extension.dart';
 import 'package:shop_app/core/theme/app_theme.dart';
 import '../../domain/model/product_model.dart';
 
@@ -13,7 +15,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => context.push(ProductDetailScreen(product)),
       child: Card(
         color: AppTheme.white,
         elevation: 6,

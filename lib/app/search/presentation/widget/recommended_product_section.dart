@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/app/shop/domain/model/product_model.dart';
-import 'package:shop_app/app/shop/presentation/screen/product_card3.dart';
+import 'package:shop_app/app/shop/presentation/card/product_card3.dart';
 import 'package:shop_app/core/theme/app_theme.dart';
 
 class RecommendedProductSection extends StatelessWidget {

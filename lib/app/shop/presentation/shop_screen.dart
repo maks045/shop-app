@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shop_app/app/cart/presentation/cart_screen.dart';
 import 'package:shop_app/app/shop/presentation/screen/advertisement.dart';
-import 'package:shop_app/app/shop/presentation/screen/product_card.dart';
+import 'package:shop_app/app/shop/presentation/card/product_card.dart';
 import 'package:shop_app/app/shop/presentation/widgets/app_drawer.dart';
+import 'package:shop_app/core/extensions/router_extension.dart';
 import 'package:shop_app/core/theme/app_theme.dart';
 import 'package:shop_app/core/utils/app_loading_page.dart';
-import '../app/product_provider.dart';
+import '../app/product/product_provider.dart';
 
 class ShopScreen extends ConsumerWidget {
   const ShopScreen({super.key});
@@ -19,11 +21,14 @@ class ShopScreen extends ConsumerWidget {
         backgroundColor: AppTheme.white,
         iconTheme: const IconThemeData(color: Colors.black),
         actions: [
-          Text(
-            "My cart",
-            style: TextTheme.of(
-              context,
-            ).titleMedium!.copyWith(color: AppTheme.textPrimary),
+          GestureDetector(
+            onTap: () => context.push(CartScreen()),
+            child: Text(
+              "My cart",
+              style: TextTheme.of(
+                context,
+              ).titleMedium!.copyWith(color: AppTheme.textPrimary),
+            ),
           ),
           SizedBox(width: 16),
         ],

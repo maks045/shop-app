@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/app/shop/domain/model/product_model.dart';
+import 'package:shop_app/app/shop/presentation/product_detail/product_detail_screen.dart';
 import 'package:shop_app/app/shop/presentation/widgets/stock_badge.dart';
+import 'package:shop_app/core/extensions/router_extension.dart';
 import 'package:shop_app/core/theme/app_theme.dart';
 
 class ProductCard3 extends StatelessWidget {
@@ -12,7 +14,7 @@ class ProductCard3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => context.push(ProductDetailScreen(product)),
       child: Card(
         color: AppTheme.white,
         elevation: 5,
@@ -89,8 +91,10 @@ class ProductCard3 extends StatelessWidget {
                           color: AppTheme.primary.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
+
                         child: Text(
                           '${product.id}',
+
                           style: Theme.of(context).textTheme.labelMedium!
                               .copyWith(color: AppTheme.blue),
                         ),

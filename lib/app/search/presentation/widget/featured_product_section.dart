@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/app/shop/domain/model/product_model.dart';
-import 'package:shop_app/app/shop/presentation/screen/product_card.dart';
-import 'package:shop_app/app/shop/presentation/screen/product_card2.dart';
+import 'package:shop_app/app/shop/presentation/card/product_card.dart';
+import 'package:shop_app/app/shop/presentation/card/product_card2.dart';
 import 'package:shop_app/core/theme/app_theme.dart';
 
 class FeaturedProductSection extends StatelessWidget {
